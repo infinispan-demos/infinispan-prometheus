@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Infinispan Prometeus metrics exposed
+  labels:
+    app: infinispan-ephemeral
+    application: infinispan-app
+    template: infinispan-ephemeral
+    metrics: infinispan
+  name: infinispan-app-metrics
+spec:
+  ports:
+    - name: web
+      port: 8080
+      protocol: TCP
+      targetPort: 9779
+  selector:
+    deploymentConfig: infinispan-app
+  sessionAffinity: None
+  type: ClusterIP
+
+
